@@ -3,13 +3,13 @@ import { PageLayout } from "@/components/layout";
 
 interface ProfileLayoutProps {
   children: React.ReactNode;
-  params: { username: string };
+  params: Promise<{ username: string }>;
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: { username: string };
+  params: Promise<{ username: string }>;
 }) {
   const { username } = await params;
   return {
@@ -25,7 +25,7 @@ export async function generateMetadata({
   };
 }
 
-export default function ProfileLayout({
+export default async function ProfileLayout({
   children,
   params,
 }: ProfileLayoutProps) {
