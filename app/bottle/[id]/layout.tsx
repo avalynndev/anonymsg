@@ -41,6 +41,6 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
   };
 }
 
-export default function BottleDetailLayout({ children }: BottleLayoutProps) {
+export default function BottleDetailLayout({ children, params }: BottleLayoutProps) {
   return <PageLayout>{children}</PageLayout>;
 }
