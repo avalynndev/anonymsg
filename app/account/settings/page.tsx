@@ -71,8 +71,10 @@ export default function SettingsPage() {
       }
 
       toast.success("Name updated successfully");
-    } catch (error: any) {
-      toast.error(error.message || "Failed to update name");
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "Failed to update name";
+      toast.error(message);
       console.error(error);
     } finally {
       setNameLoading(false);
@@ -97,8 +99,10 @@ export default function SettingsPage() {
       }
 
       toast.success("Username updated successfully");
-    } catch (error: any) {
-      toast.error(error.message || "Failed to update username");
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "Failed to update username";
+      toast.error(message);
       console.error(error);
     } finally {
       setUsernameLoading(false);
@@ -129,8 +133,10 @@ export default function SettingsPage() {
       } else {
         toast.error("Failed to initiate email change");
       }
-    } catch (error: any) {
-      toast.error(error.message || "Failed to update email");
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "Failed to update email";
+      toast.error(message);
       console.error(error);
     } finally {
       setEmailLoading(false);
@@ -163,8 +169,10 @@ export default function SettingsPage() {
       toast.success("Password updated successfully");
       setCurrentPassword("");
       setNewPassword("");
-    } catch (error: any) {
-      toast.error(error.message || "Failed to update password");
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "Failed to update password";
+      toast.error(message);
       console.error(error);
     } finally {
       setPasswordLoading(false);
@@ -212,8 +220,10 @@ export default function SettingsPage() {
 
       setAvatar(base64Image);
       toast.success("Avatar updated successfully");
-    } catch (error: any) {
-      toast.error(error.message || "Failed to upload avatar");
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "Failed to upload avatar";
+      toast.error(message);
       console.error(error);
     } finally {
       setAvatarLoading(false);
@@ -233,8 +243,10 @@ export default function SettingsPage() {
 
       setAvatar(null);
       toast.success("Avatar removed successfully");
-    } catch (error: any) {
-      toast.error(error.message || "Failed to remove avatar");
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "Failed to remove avatar";
+      toast.error(message);
       console.error(error);
     } finally {
       setAvatarLoading(false);
@@ -261,21 +273,23 @@ export default function SettingsPage() {
       if (error) {
         throw new Error(error.message);
       }
-    } catch (error: any) {
-      toast.error(error.message || "Failed to sign out");
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "Failed to sign out";
+      toast.error(message);
       console.error(error);
     }
   };
 
   const handleDeleteAccount = async () => {
     const confirmDelete = window.confirm(
-      "Are you sure you want to delete your account? This action cannot be undone."
+      "Are you sure you want to delete your account? This action cannot be undone.",
     );
 
     if (!confirmDelete) return;
 
     const secondConfirm = window.confirm(
-      "This will permanently delete your account and all associated data"
+      "This will permanently delete your account and all associated data",
     );
 
     if (!secondConfirm) return;
@@ -294,8 +308,10 @@ export default function SettingsPage() {
       if (error) {
         throw new Error(error.message);
       }
-    } catch (error: any) {
-      toast.error(error.message || "Failed to delete account");
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "Failed to delete account";
+      toast.error(message);
       console.error(error);
     } finally {
       setDeleteLoading(false);
