@@ -15,6 +15,7 @@ import {
 } from "./ui/keerthi";
 import { Bottle } from "./bottle";
 import { InferSelectModel } from "drizzle-orm";
+import { BeaconIntroDialog } from "@/components/intro-dialog";
 
 type BottleType = InferSelectModel<typeof bottle>;
 type BottleWithMotion = BottleType & {
@@ -33,14 +34,30 @@ export function Ocean() {
       duration: number;
     }>
   >([]);
+  const [hasSeenIntro, setHasSeenIntro] = useState(true);
+  const [isIntroOpen, setIsIntroOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [bottles, setBottles] = useState<BottleWithMotion[]>([]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [allBottles, setAllBottles] = useState<BottleWithMotion[]>([]);
   const [selectedBottle, setSelectedBottle] = useState<BottleWithMotion | null>(
-    null,
+    null
   );
   const router = useRouter();
+
+  useEffect(() => {
+    const seen = localStorage.getItem("hasSeenBeaconIntro");
+    if (!seen) {
+      setHasSeenIntro(false);
+      setIsIntroOpen(true);
+    }
+  }, []);
+
+  const handleIntroClose = () => {
+    localStorage.setItem("hasSeenBeaconIntro", "true");
+    setHasSeenIntro(true);
+    setIsIntroOpen(false);
+  };
 
   useEffect(() => {
     const fetchBottles = async () => {
@@ -90,7 +107,7 @@ export function Ocean() {
           const filtered = prev.filter((x) => x.id !== bottleItem.id);
 
           const remaining = allBottles.filter(
-            (x) => !filtered.some((y) => y.id === x.id),
+            (x) => !filtered.some((y) => y.id === x.id)
           );
           const randomNew =
             remaining.length > 0
@@ -156,22 +173,24 @@ export function Ocean() {
           </div>
         </div>
       )}
-      <div
-        className={`${
-          isDialogOpen ? "opacity-0 pointer-events-none" : "opacity-100"
-        }`}
-      >
-        {bottles.map((b) => (
-          <Bottle
-            key={b.id}
-            topPercent={b.topPercent}
-            duration={b.duration}
-            delay={b.delay}
-            scale={b.scale}
-            onBottleClick={() => handleBottleClick(b)}
-          />
-        ))}
-      </div>
+      {!isIntroOpen && (
+        <div
+          className={`${
+            isDialogOpen ? "opacity-0 pointer-events-none" : "opacity-100"
+          }`}
+        >
+          {bottles.map((b) => (
+            <Bottle
+              key={b.id}
+              topPercent={b.topPercent}
+              duration={b.duration}
+              delay={b.delay}
+              scale={b.scale}
+              onBottleClick={() => handleBottleClick(b)}
+            />
+          ))}
+        </div>
+      )}
 
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-full">
         <svg
@@ -248,6 +267,7 @@ export function Ocean() {
           />
         ))}
       </div>
+      <BeaconIntroDialog open={isIntroOpen} onClose={handleIntroClose} />
       <Keerthi open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <KeerthiContent className="sm:max-w-md transition-colors bg-gradient-to-b from-sky-100 via-sky-200 to-cyan-200 dark:bg-background dark:bg-none">
           <KeerthiHeader>
