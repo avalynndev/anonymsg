@@ -12,6 +12,7 @@ import { useSession } from "@/lib/auth-client";
 import { CornerDownLeftIcon, BottleWineIcon } from "lucide-react";
 import Link from "next/link";
 import { ParamValue } from "next/dist/server/request/params";
+import { ReloadIcon } from "@radix-ui/react-icons";
 
 export default function BottleDetailPage({ id }: { id: ParamValue }) {
   const session = useSession();
@@ -57,10 +58,17 @@ export default function BottleDetailPage({ id }: { id: ParamValue }) {
     fetchBottle();
   }, []);
 
-  if (loading || !bottleData)
+  if (loading)
     return (
-      <div className="flex min-h-screen items-center justify-center px-4">
-        <Spinner size="lg" className="text-sky-500 dark:text-sky-300" />
+      <div className="relative flex h-[40vh] items-center justify-center">
+        <ReloadIcon className="h-8 w-8 animate-spin" />
+      </div>
+    );
+
+  if (!bottleData)
+    return (
+      <div className="flex min-h-screen items-center justify-center text-muted-foreground">
+        Bottle not found.
       </div>
     );
 
@@ -206,8 +214,7 @@ export default function BottleDetailPage({ id }: { id: ParamValue }) {
         />
         <Button
           onClick={handleReply}
-          className="shadow-md rounded-lg transition-all w-full sm:w-auto
-          "
+          className="shadow-md rounded-lg transition-all w-full sm:w-auto"
         >
           Submit Reply
         </Button>

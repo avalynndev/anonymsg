@@ -31,21 +31,22 @@ export default function PageLayout({
   const [menuOpen, setMenuOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
-  const [driftTime, setDriftTime] = useState(60);
+  const [driftTime, setDriftTime] = useState(24);
   const e = useSession();
 
   const handlePostBottle = async () => {
     if (!message.trim()) return;
     try {
+      const adjustedDriftTime = driftTime < 24 ? 24 : driftTime;
       await db.insert(bottle).values({
         message,
-        driftTime: 0,
+        driftTime: adjustedDriftTime * 60,
         senderName: e.data?.user?.name ?? "Anonymous",
         senderUsername: e.data?.user?.username ?? null,
       });
 
       setMessage("");
-      setDriftTime(60);
+      setDriftTime(24);
       setOpen(false);
       alert("🌊 Your bottle has been sent!");
     } catch (error) {
@@ -71,7 +72,7 @@ export default function PageLayout({
               { href: "/", label: "Home" },
               { href: "/about", label: "About" },
               { href: "/discover", label: "Discover" },
-              { href: "/messages", label: "Messages" },
+              { href: "/inbox", label: "Inbox" },
             ].map((item) => (
               <a
                 key={item.href}
@@ -107,16 +108,20 @@ export default function PageLayout({
                   />
                   <div>
                     <label className="text-sm font-medium mb-2 block">
-                      Drift Time (minutes)
+                      Drift Time (hours)
                     </label>
                     <Input
                       type="number"
-                      min={1}
-                      max={1440}
+                      min={24}
+                      max={168}
                       value={driftTime}
                       onChange={(e) => setDriftTime(Number(e.target.value))}
                     />
                   </div>
+                  <label className="text-sm mt-4 block">
+                    NOTE: Takes 24hrs to deliver because vercel limit is running
+                    one cron job every 24hrs
+                  </label>
                 </KeerthiBody>
 
                 <KeerthiFooter className="flex justify-end gap-2">
@@ -161,7 +166,7 @@ export default function PageLayout({
               { href: "/", label: "Home" },
               { href: "/about", label: "About" },
               { href: "/discover", label: "Discover" },
-              { href: "/messages", label: "Messages" },
+              { href: "/inbox", label: "Inbox" },
             ].map((item) => (
               <a
                 key={item.href}

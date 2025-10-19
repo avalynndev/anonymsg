@@ -232,12 +232,14 @@ export default function Ocean() {
   }, []);
 
   return (
-    <div className="relative h-full w-full overflow-hidden dark:via-sky-200 dark:to-cyan-200 dark:bg-gradient-to-b dark:from-sky-100">
+    <div className="relative h-full w-full overflow-hidden bg-gradient-to-b dark:from-[#0a192f] dark:via-[#0e2433] dark:to-[#001f3f]">
       <div className="absolute inset-0 -z-20 bg-gradient-to-b from-sky-50 via-blue-50 to-cyan-50" />
-
-      <div className="absolute top-6 right-12 w-28 h-28 rounded-full bg-gradient-to-br from-yellow-200 to-orange-300 opacity-50 blur-xl" />
-      <div className="absolute top-8 right-14 w-24 h-24 rounded-full bg-yellow-100 opacity-70" />
-
+      <div
+        className="absolute top-6 right-12 w-28 h-28 rounded-full bg-gradient-to-br from-yellow-200 to-orange-300 opacity-50 blur-xl dark:from-blue-400 dark:to-indigo-500 dark:opacity-30 dark:blur-2xl"
+      />
+      <div
+        className="absolute top-8 right-14 w-24 h-24 rounded-full bg-yellow-100 opacity-70 dark:bg-indigo-300/30 dark:opacity-40"
+      />
       <div className="absolute inset-x-0 bottom-0 -z-10 h-4/5 opacity-40 overflow-hidden">
         <svg
           viewBox="0 0 3200 400"
@@ -256,7 +258,6 @@ export default function Ocean() {
           />
         </svg>
       </div>
-
       <div className="absolute inset-x-0 bottom-0 -z-5 h-3/5 opacity-60 overflow-hidden">
         <svg
           viewBox="0 0 3200 400"
@@ -275,7 +276,6 @@ export default function Ocean() {
           />
         </svg>
       </div>
-
       {bottles.map((b) => (
         <Bottle
           key={b.id}
@@ -286,7 +286,6 @@ export default function Ocean() {
           onBottleClick={handleBottleClick}
         />
       ))}
-
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-full">
         <svg
           viewBox="0 0 3200 400"
@@ -348,9 +347,7 @@ export default function Ocean() {
           />
         </svg>
       </div>
-
       <div className="absolute bottom-0 w-full h-32 bg-gradient-to-t from-sky-600/60 via-sky-400/30 to-transparent z-30 pointer-events-none" />
-
       <div className="absolute inset-x-0 bottom-0 z-20 h-16 pointer-events-none">
         {bubbles.map((bubble) => (
           <div
@@ -364,7 +361,6 @@ export default function Ocean() {
           />
         ))}
       </div>
-
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent className="sm:max-w-md transition-colors bg-gradient-to-b from-sky-100 via-sky-200 to-cyan-200 dark:bg-background dark:bg-none">
           <DialogHeader>

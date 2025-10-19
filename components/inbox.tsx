@@ -44,6 +44,19 @@ export default function Inbox() {
     loadInbox();
   }, [session]);
 
+  if (!session?.user) {
+    return (
+      <div className="flex h-[50vh] flex-col items-center justify-center text-center space-y-2">
+        <p className="text-lg font-semibold text-sky-800 dark:text-sky-300">
+          You need to sign in to view your inbox.
+        </p>
+        <p className="text-sm text-muted-foreground">
+          Please log in to see bottles delivered to you.
+        </p>
+      </div>
+    );
+  }
+
   if (loading)
     return (
       <div className="flex h-[50vh] items-center justify-center">
@@ -52,7 +65,11 @@ export default function Inbox() {
     );
 
   if (bottles.length === 0)
-    return <div className="p-8 text-center text-sky-700">No bottles yet.</div>;
+    return (
+      <div className="p-8 text-center text-sky-700 dark:text-sky-300">
+        No bottles yet.
+      </div>
+    );
 
   return (
     <div className="grid grid-cols-1 gap-4 p-6">
