@@ -282,7 +282,7 @@ export function Ocean() {
             <Button
               onClick={() => router.push(`/bottle/${selectedBottle?.id}`)}
             >
-              View more
+              View
             </Button>
           </KeerthiFooter>
         </KeerthiContent>
