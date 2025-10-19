@@ -73,14 +73,12 @@ export const siteConfig = {
 
     signUp: {
       title: "Sign Up",
-      description:
-        "Create your account on Beacon in a Bottle.",
+      description: "Create your account on Beacon in a Bottle.",
     },
 
     signOut: {
       title: "Sign Out",
-      description:
-        "You have signed out of Beacon in a Bottle.",
+      description: "You have signed out of Beacon in a Bottle.",
     },
   },
 };

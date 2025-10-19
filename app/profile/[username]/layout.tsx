@@ -25,8 +25,6 @@ export async function generateMetadata({
   };
 }
 
-export default async function ProfileLayout({
-  children,
-}: ProfileLayoutProps) {
+export default async function ProfileLayout({ children }: ProfileLayoutProps) {
   return <PageLayout>{children}</PageLayout>;
 }

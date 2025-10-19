@@ -13,12 +13,15 @@ import Link from "next/link";
 import { ParamValue } from "next/dist/server/request/params";
 import { ReloadIcon } from "@radix-ui/react-icons";
 
+type Bottle = typeof bottle.$inferSelect;
+type BottleReply = typeof bottleReply.$inferSelect;
+
 export function BottleDetailPage({ id }: { id: ParamValue }) {
   const session = useSession();
   const username = session.data?.user?.username ?? undefined;
 
-  const [bottleData, setBottleData] = useState<any | null>(null);
-  const [replies, setReplies] = useState<any[]>([]);
+  const [bottleData, setBottleData] = useState<Bottle | null>(null);
+  const [replies, setReplies] = useState<BottleReply[]>([]);
   const [newReply, setNewReply] = useState("");
   const [loading, setLoading] = useState(true);
 

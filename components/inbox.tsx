@@ -11,9 +11,16 @@ import { formatDate } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 
+type Bottle = typeof bottle.$inferSelect;
+type BottleReply = typeof bottleReply.$inferSelect;
+
+type BottleWithReplies = Bottle & {
+  replies: BottleReply[];
+};
+
 export function Inbox() {
   const { data: session } = useSession();
-  const [bottles, setBottles] = useState<any[]>([]);
+  const [bottles, setBottles] = useState<BottleWithReplies[]>([]);
   const [loading, setLoading] = useState(true);
   const { resolvedTheme } = useTheme();
   const router = useRouter();
@@ -114,7 +121,9 @@ export function Inbox() {
               isDark ? "text-muted-foreground" : "text-sky-600"
             }`}
           >
-            {formatDate(bottle.deliveredAt)}
+            {bottle.deliveredAt
+              ? formatDate(bottle.deliveredAt)
+              : "Not delivered yet"}
           </div>
         </div>
       ))}

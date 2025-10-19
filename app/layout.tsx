@@ -60,6 +60,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta name="apple-mobile-web-app-title" content="InABottle" />
+      </head>
       <body
         className={`${nunito.variable} ${ptSans.variable} antialiased relative`}
       >

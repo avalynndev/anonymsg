@@ -38,7 +38,7 @@ export function BeaconIntroDialog({ open, onClose }: BeaconIntroDialogProps) {
 
   return (
     <Keerthi open={isOpen} onOpenChange={setIsOpen}>
-      <KeerthiContent className="sm:max-w-[480px]">
+      <KeerthiContent>
         <KeerthiHeader>
           <KeerthiTitle>Welcome to Beacon in a Bottle 🌊</KeerthiTitle>
           <KeerthiDescription>
@@ -50,9 +50,9 @@ export function BeaconIntroDialog({ open, onClose }: BeaconIntroDialogProps) {
             <br />
             <br />
             <span>
-              You can grab other people&apos;s messages and write back if you want,
-              or just let them keep drifting. Each bottle is basically a message
-              traveling between strangers. (relation to SIGNAL)
+              You can grab other people&apos;s messages and write back if you
+              want, or just let them keep drifting. Each bottle is basically a
+              message traveling between strangers. (relation to SIGNAL)
             </span>
             <br />
             <br />

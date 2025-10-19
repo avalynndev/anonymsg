@@ -2,7 +2,7 @@
   "lockfileVersion": 1,
   "workspaces": {
     "": {
-      "name": "anonymsg",
+      "name": "beacon-in-a-bottle",
       "dependencies": {
         "@daveyplate/better-auth-ui": "^3.2.6",
         "@ducanh2912/next-pwa": "^10.2.9",

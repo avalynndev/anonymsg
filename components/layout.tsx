@@ -23,11 +23,7 @@ import { db } from "@/db";
 import { bottle } from "@/schema";
 import { GlowingBackground } from "./glowbg";
 
-export function PageLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export function PageLayout({ children }: { children: React.ReactNode }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");

@@ -68,7 +68,7 @@ export function DiscoverBottles() {
   }, []);
 
   const visibleBottles = bottles.filter((bottle) =>
-    bottle.message.toLowerCase().includes(searchTerm.toLowerCase())
+    bottle.message.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   return (
@@ -88,7 +88,9 @@ export function DiscoverBottles() {
             className="px-3 py-2 rounded-md border border-border bg-background hover:bg-accent transition-colors disabled:opacity-50"
             aria-label="Reload bottles"
           >
-            <ReloadIcon className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} />
+            <ReloadIcon
+              className={`h-4 w-4 ${loading ? "animate-spin" : ""}`}
+            />
           </button>
         </div>
       </div>

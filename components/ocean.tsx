@@ -40,7 +40,7 @@ export function Ocean() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [allBottles, setAllBottles] = useState<BottleWithMotion[]>([]);
   const [selectedBottle, setSelectedBottle] = useState<BottleWithMotion | null>(
-    null
+    null,
   );
   const router = useRouter();
 
@@ -80,7 +80,7 @@ export function Ocean() {
     fetchBottles();
   }, []);
 
-  const handleBottleClick = (bottleData: any) => {
+  const handleBottleClick = (bottleData: BottleWithMotion) => {
     setSelectedBottle(bottleData);
     setIsDialogOpen(true);
   };
@@ -104,7 +104,7 @@ export function Ocean() {
           const filtered = prev.filter((x) => x.id !== bottleItem.id);
 
           const remaining = allBottles.filter(
-            (x) => !filtered.some((y) => y.id === x.id)
+            (x) => !filtered.some((y) => y.id === x.id),
           );
           const randomNew =
             remaining.length > 0
