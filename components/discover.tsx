@@ -94,7 +94,7 @@ export function DiscoverBottles() {
           </button>
         </div>
       </div>
-      <div className="grid grid-cols-1 gap-2 p-4 pb-20">
+      <div className="grid grid-cols-1 gap-4 p-4 pb-20">
         {loading ? (
           <div className="relative flex h-[40vh] items-center justify-center">
             <ReloadIcon className="h-8 w-8 animate-spin" />

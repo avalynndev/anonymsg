@@ -8,7 +8,8 @@ export const siteConfig = {
     "anonymous messages",
     "random connection",
     "drift bottles",
-    "stranger stories",
+    "siege",
+    "ocean",
   ],
   author: "avalynndev",
   links: {

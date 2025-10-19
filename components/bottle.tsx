@@ -1,3 +1,4 @@
+// AI GENERATED
 export function Bottle({
   topPercent,
   duration,

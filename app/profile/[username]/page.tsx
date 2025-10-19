@@ -32,11 +32,11 @@ export default async function ProfilePage({
   return (
     <section className="relative h-[72vh] w-full overflow-x-hidden p-0 rounded-2xl border-[0.5]">
       <main className="mx-auto max-w-3xl p-6">
-        <Avatar>
+        <Avatar className="w-18 h-18">
           <AvatarImage alt="User profile" src={userInfo.image || ""} />
-          <AvatarFallback className={"text-foreground uppercase"}>
+          <AvatarFallback className="text-foreground uppercase text-3xl">
             {firstTwoCharacters(userInfo.username || "") || (
-              <UserRoundIcon className={"size-[50%]"} />
+              <UserRoundIcon className="w-10 h-10" />
             )}
           </AvatarFallback>
         </Avatar>
