@@ -40,13 +40,13 @@ export default function AboutPage() {
 
         <div className="mb-12 text-center">
           <h2 className="text-3xl font-semibold mb-6 bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent">
-            What's Beacon in a Bottle?
+            What&apos;s Beacon in a Bottle?
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             You write a message, send it out, and it floats around until someone
             random finds it. Kind of like throwing a bottle into the ocean, but
             digital. Each message is just a small way to connect with someone
-            you've never met.
+            you&apos;ve never met.
           </p>
         </div>
 
@@ -81,7 +81,7 @@ export default function AboutPage() {
               </h3>
               <p className="text-muted-foreground">
                 Check out messages people from all over the world have sent. You
-                never know what you'll find.
+                never know what you&apos;ll find.
               </p>
             </div>
 
@@ -90,8 +90,8 @@ export default function AboutPage() {
                 Inbox
               </h3>
               <p className="text-muted-foreground">
-                See bottles you've gotten or ones you've replied to. All your
-                conversations in one place.
+                See bottles you&apos;ve gotten or ones you&apos;ve replied to.
+                All your conversations in one place.
               </p>
             </div>
 
@@ -100,8 +100,8 @@ export default function AboutPage() {
                 Bottle Page
               </h3>
               <p className="text-muted-foreground">
-                Read one bottle's complete message. See what that person wanted
-                to share.
+                Read one bottle&apos;s complete message. See what that person
+                wanted to share.
               </p>
             </div>
 
@@ -110,7 +110,7 @@ export default function AboutPage() {
                 Profile
               </h3>
               <p className="text-muted-foreground">
-                Look at what you've been up to and customize your account
+                Look at what you&apos;ve been up to and customize your account
                 however you like.
               </p>
             </div>
@@ -120,8 +120,8 @@ export default function AboutPage() {
                 Settings
               </h3>
               <p className="text-muted-foreground">
-                Change your settings, and other stuff to make the
-                site work better for you.
+                Change your settings, and other stuff to make the site work
+                better for you.
               </p>
             </div>
 
@@ -136,8 +136,8 @@ export default function AboutPage() {
 
         <div className="mt-16 text-center border-t border-border/50 pt-12">
           <p className="text-xl text-muted-foreground italic">
-            "In the vastness of the digital ocean, <br />
-            every beacon finds its shore."
+            &quot;In the vastness of the digital ocean, <br />
+            every beacon finds its shore.&quot;
           </p>
         </div>
       </div>
