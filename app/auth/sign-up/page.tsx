@@ -1,16 +1,13 @@
 "use client";
 
-import { PageLayout } from "@/components/layout";
 import { AuthView } from "@daveyplate/better-auth-ui";
 
 export default function AuthPage() {
   return (
-    <PageLayout>
-      <main className="flex items-center justify-center p-4">
-        <div className="w-full max-w-md">
-          <AuthView view="SIGN_UP" />
-        </div>
-      </main>
-    </PageLayout>
+    <main className="flex items-center justify-center p-4">
+      <div className="w-full max-w-md mx-auto">
+        <AuthView view="SIGN_UP" />
+      </div>
+    </main>
   );
 }

@@ -13,7 +13,7 @@ import Link from "next/link";
 import { ParamValue } from "next/dist/server/request/params";
 import { ReloadIcon } from "@radix-ui/react-icons";
 
-export default function BottleDetailPage({ id }: { id: ParamValue }) {
+export function BottleDetailPage({ id }: { id: ParamValue }) {
   const session = useSession();
   const username = session.data?.user?.username ?? undefined;
 
@@ -108,7 +108,7 @@ export default function BottleDetailPage({ id }: { id: ParamValue }) {
             <span className="font-medium text-sky-900 dark:text-foreground">
               Drift Time:
             </span>{" "}
-            {bottleData.driftTime} hours
+            {bottleData.driftTime} minutes
           </div>
           <div>
             <span className="font-medium text-sky-900 dark:text-foreground">

@@ -23,7 +23,7 @@ export async function generateMetadata({
 
   if (!bottleData) {
     return {
-      title: "Bottle Not Found – Beacon in a Bottle",
+      title: "Bottle Not Found",
       description: "This bottle does not exist or has been lost at sea.",
     };
   }
@@ -34,7 +34,7 @@ export async function generateMetadata({
       : bottleData.message;
 
   return {
-    title: `Message from ${bottleData.senderUsername} – Beacon in a Bottle`,
+    title: `Message from ${bottleData.senderUsername}`,
     description: snippet,
     keywords: [
       "Beacon in a Bottle",
@@ -47,7 +47,6 @@ export async function generateMetadata({
 
 export default async function BottleDetailLayout({
   children,
-  params,
 }: BottleLayoutProps) {
   return <PageLayout>{children}</PageLayout>;
 }

@@ -13,7 +13,7 @@ export async function generateMetadata({
 }) {
   const { username } = await params;
   return {
-    title: `${username}'s Profile – Beacon in a Bottle`,
+    title: `${username}'s Profile`,
     description: `Discover the bottles and messages sent by ${username}. Explore stories, thoughts, and connections drifting through the digital sea.`,
     keywords: [
       "Beacon in a Bottle",
@@ -27,7 +27,6 @@ export async function generateMetadata({
 
 export default async function ProfileLayout({
   children,
-  params,
 }: ProfileLayoutProps) {
   return <PageLayout>{children}</PageLayout>;
 }

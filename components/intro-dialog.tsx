@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 
 interface BeaconIntroDialogProps {
-  open?: boolean; 
+  open?: boolean;
   onClose?: () => void;
 }
 
@@ -33,7 +33,7 @@ export function BeaconIntroDialog({ open, onClose }: BeaconIntroDialogProps) {
   const handleClose = () => {
     setIsOpen(false);
     localStorage.setItem("hasSeenBeaconIntro", "true");
-    onClose?.(); 
+    onClose?.();
   };
 
   return (
@@ -43,57 +43,49 @@ export function BeaconIntroDialog({ open, onClose }: BeaconIntroDialogProps) {
           <KeerthiTitle>Welcome to Beacon in a Bottle 🌊</KeerthiTitle>
           <KeerthiDescription>
             <span>
-              <strong>Beacon in a Bottle</strong> takes inspiration from{" "}
-              <strong>Signal</strong> — both focus on connection, but here it’s
-              between strangers instead of contacts.
+              You write a message, it floats around the internet, and eventually
+              someone random finds it. It's like throwing a bottle into the
+              ocean, but online. Pretty cool way to meet new people.
             </span>
             <br />
             <br />
             <span>
-              Each message you send becomes a bottle drifting through the
-              digital ocean, waiting for someone unexpected to find it.
+              You can grab other people's messages and write back if you want,
+              or just let them keep drifting. Each bottle is basically a message
+              traveling between strangers. (relation to SIGNAL)
             </span>
             <br />
             <br />
-            <span>
-              You can discover bottles from others, reply if you want, or just
-              let them float away. Every interaction is a quiet signal reaching
-              across the world.
-            </span>
-            <br />
-            <br />
-            <span>
-              📜 <strong>Pages in the Site</strong>
-            </span>
+            <span>📜 What's on the site</span>
           </KeerthiDescription>
           <ul className="list-disc pl-6 mt-1 space-y-1 text-muted-foreground text-sm">
             <li>
-              <strong>Home</strong> – Watch bottles drift and catch one to read
-              or reply.
+              <strong>Home</strong> – Watch bottles floating around and click
+              one to read or reply.
             </li>
             <li>
-              <strong>Discover</strong> – Explore bottles shared by others
-              around the world.
+              <strong>Discover</strong> – Check out messages from people all
+              over the world.
             </li>
             <li>
-              <strong>Inbox</strong> – Find bottles you’ve received or replied
+              <strong>Inbox</strong> – See bottles you got or ones you replied
               to.
             </li>
             <li>
-              <strong>Each Bottle Page</strong> – Read a single bottle’s full
-              message.
+              <strong>Each Bottle Page</strong> – Read what someone wrote in
+              their bottle.
             </li>
             <li>
-              <strong>Profile</strong> – View your activity and personalize your
-              space.
+              <strong>Profile</strong> – Look at your activity and change how
+              your account looks.
             </li>
             <li>
-              <strong>Settings</strong> – Control privacy, themes, and
-              preferences.
+              <strong>Settings</strong> – Adjust privacy, themes, and other
+              stuff.
             </li>
             <li>
-              <strong>About</strong> – Learn how Beacon connects people through
-              digital signals.
+              <strong>About</strong> – Learn more about why we made Beacon and
+              how it works.
             </li>
           </ul>
         </KeerthiHeader>
@@ -101,12 +93,12 @@ export function BeaconIntroDialog({ open, onClose }: BeaconIntroDialogProps) {
         <KeerthiFooter className="flex justify-between">
           <KeerthiClose asChild>
             <Button className="flex-1 mr-2" onClick={handleClose}>
-              Let’s Begin
+              Let's Go
             </Button>
           </KeerthiClose>
           <KeerthiClose asChild>
-            <Button size="icon" onClick={handleClose}>
-              <X />
+            <Button onClick={handleClose}>
+              Don't Show Again <X />
             </Button>
           </KeerthiClose>
         </KeerthiFooter>

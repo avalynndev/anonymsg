@@ -33,7 +33,7 @@ type Bottle = {
   replies?: BottleReply[];
 };
 
-export function Bottles() {
+export function DiscoverBottles() {
   const router = useRouter();
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === "dark";
@@ -68,19 +68,31 @@ export function Bottles() {
   }, []);
 
   const visibleBottles = bottles.filter((bottle) =>
-    bottle.message.toLowerCase().includes(searchTerm.toLowerCase()),
+    bottle.message.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
     <div className="w-full">
-      <div className="grid grid-cols-1 gap-2 p-4">
-        <Input
-          type="search"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Search bottles..."
-          className="mb-4 w-full rounded-md text-sm"
-        />
+      <div className="sticky top-0 z-10 bg-background p-4 pb-4 border-b">
+        <div className="flex gap-2">
+          <Input
+            type="search"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Search bottles..."
+            className="flex-1 rounded-md text-sm"
+          />
+          <button
+            onClick={fetchBottles}
+            disabled={loading}
+            className="px-3 py-2 rounded-md border border-border bg-background hover:bg-accent transition-colors disabled:opacity-50"
+            aria-label="Reload bottles"
+          >
+            <ReloadIcon className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} />
+          </button>
+        </div>
+      </div>
+      <div className="grid grid-cols-1 gap-2 p-4 pb-20">
         {loading ? (
           <div className="relative flex h-[40vh] items-center justify-center">
             <ReloadIcon className="h-8 w-8 animate-spin" />
