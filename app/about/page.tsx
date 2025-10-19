@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import PageLayout from "@/components/layout";
+import { PageLayout } from "@/components/layout";
 
 export default function AboutPage() {
   return (

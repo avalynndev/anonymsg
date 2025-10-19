@@ -1,5 +1,5 @@
 import React from "react";
-import PageLayout from "@/components/layout";
+import { PageLayout } from "@/components/layout";
 import Bottles from "@/components/bottles";
 
 export const metadata = {

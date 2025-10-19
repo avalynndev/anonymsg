@@ -23,7 +23,7 @@ import { db } from "@/db";
 import { bottle } from "@/schema";
 import { GlowingBackground } from "./glowbg";
 
-export default function PageLayout({
+export function PageLayout({
   children,
 }: {
   children: React.ReactNode;

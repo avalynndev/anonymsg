@@ -4,7 +4,7 @@ import { eq } from "drizzle-orm";
 import { notFound } from "next/navigation";
 import { format } from "date-fns";
 import Link from "next/link";
-import PageLayout from "@/components/layout";
+import { PageLayout } from "@/components/layout";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { UserRoundIcon } from "lucide-react";
 

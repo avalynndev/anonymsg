@@ -1,6 +1,6 @@
 "use client";
 
-import PageLayout from "@/components/layout";
+import { PageLayout } from "@/components/layout";
 import { AuthView } from "@daveyplate/better-auth-ui";
 
 export default function AuthPage() {

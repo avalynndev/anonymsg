@@ -1,6 +1,6 @@
 "use client";
 import { useParams } from "next/navigation";
-import PageLayout from "@/components/layout";
+import { PageLayout } from "@/components/layout";
 import BottleDetailPage from "@/components/details";
 
 export default function Page() {

@@ -1,4 +1,4 @@
-import PageLayout from "@/components/layout";
+import { PageLayout } from "@/components/layout";
 import {
   UpdateAvatarCard,
   UpdateNameCard,

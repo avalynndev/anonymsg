@@ -23,7 +23,8 @@ type BottleWithMotion = BottleType & {
   delay: number;
   scale: number;
 };
-export default function Ocean() {
+
+export function Ocean() {
   const [bubbles, setBubbles] = useState<
     Array<{
       id: number;
