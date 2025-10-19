@@ -2,7 +2,7 @@
   "crons": [
     {
       "path": "/api/cron/drift",
-      "schedule": "*/5 * * * *"
+      "schedule": "0 1 * * *"
     }
   ]
 }
