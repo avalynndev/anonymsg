@@ -1,0 +1,33 @@
+import React from "react";
+import { PageLayout } from "@/components/layout";
+
+interface ProfileLayoutProps {
+  children: React.ReactNode;
+  params: { username: string };
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { username: string };
+}) {
+  const { username } = await params;
+  return {
+    title: `${username}'s Profile – Beacon in a Bottle`,
+    description: `Discover the bottles and messages sent by ${username}. Explore stories, thoughts, and connections drifting through the digital sea.`,
+    keywords: [
+      "Beacon in a Bottle",
+      "user profile",
+      "messages",
+      "digital bottles",
+      username,
+    ],
+  };
+}
+
+export default function ProfileLayout({
+  children,
+  params,
+}: ProfileLayoutProps) {
+  return <PageLayout>{children}</PageLayout>;
+}

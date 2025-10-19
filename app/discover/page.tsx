@@ -1,17 +1,9 @@
-import React from "react";
-import { PageLayout } from "@/components/layout";
-import Bottles from "@/components/bottles";
-
-export const metadata = {
-  title: "Beacon in a Bottle",
-};
+import { Bottles } from "@/components/bottles";
 
 export default function Page() {
   return (
-    <PageLayout>
-      <section className="relative h-[72vh] w-full overflow-hidden p-0 rounded-2xl border-[0.5]">
-        <Bottles />
-      </section>
-    </PageLayout>
+    <section className="relative h-[72vh] w-full overflow-hidden p-0 rounded-2xl border-[0.5]">
+      <Bottles />
+    </section>
   );
 }

@@ -1,10 +1,6 @@
 import { Ocean } from "@/components/ocean";
 import { PageLayout } from "@/components/layout";
 
-export const metadata = {
-  title: "Beacon in a Bottle",
-};
-
 export default function Page() {
   return (
     <PageLayout>

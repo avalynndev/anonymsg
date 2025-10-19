@@ -33,7 +33,7 @@ type Bottle = {
   replies?: BottleReply[];
 };
 
-export default function Bottles() {
+export function Bottles() {
   const router = useRouter();
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === "dark";

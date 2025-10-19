@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Nunito } from "next/font/google";
-import { PT_Sans } from "next/font/google";
+import { Nunito, PT_Sans } from "next/font/google";
 import "@/styles/globals.css";
 import { Providers } from "@/components/providers";
 import { Toaster } from "@/components/ui/sonner";
+import { siteConfig } from "@/config/site";
 
 const nunito = Nunito({
   variable: "--font-nunito",
@@ -17,14 +17,40 @@ const ptSans = PT_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "a",
-  description: "s",
+  title: {
+    default: siteConfig.metadata.default.title,
+    template: `%s – ${siteConfig.name}`,
+  },
+  metadataBase: new URL(siteConfig.url),
+  description: siteConfig.metadata.default.description,
+  keywords: siteConfig.keywords,
+  authors: [
+    {
+      name: siteConfig.author,
+      url: siteConfig.links.github,
+    },
+  ],
+  creator: siteConfig.author,
   openGraph: {
     type: "website",
-    url: "https://c.vercel.app",
-    title: "s",
-    description: "s",
+    locale: "en_US",
+    url: siteConfig.url,
+    title: siteConfig.metadata.default.title,
+    description: siteConfig.metadata.default.description,
+    siteName: siteConfig.name,
   },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.metadata.default.title,
+    description: siteConfig.metadata.default.description,
+    creator: `@${siteConfig.author}`,
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon-16x16.png",
+    apple: "/apple-touch-icon.png",
+  },
+  manifest: `${siteConfig.url}/manifest.json`,
 };
 
 export default function RootLayout({

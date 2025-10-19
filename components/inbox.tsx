@@ -11,7 +11,7 @@ import { formatDate } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 
-export default function Inbox() {
+export function Inbox() {
   const { data: session } = useSession();
   const [bottles, setBottles] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
