@@ -6,7 +6,6 @@ import { bottle, bottleReply } from "@/schema";
 import { eq } from "drizzle-orm";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Spinner } from "@/components/ui/spinner";
 import { formatDate } from "@/lib/utils";
 import { useSession } from "@/lib/auth-client";
 import { CornerDownLeftIcon, BottleWineIcon } from "lucide-react";

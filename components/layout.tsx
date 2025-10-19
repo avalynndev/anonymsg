@@ -141,6 +141,7 @@ export default function PageLayout({
                   href: `/profile/${e.data?.user.username}`,
                   icon: <UserIcon />,
                   label: "Profile",
+                  signedIn: true,
                 },
               ]}
             />
@@ -178,6 +179,59 @@ export default function PageLayout({
               </a>
             ))}
             <div className="flex justify-center mt-2 gap-3">
+              <Keerthi open={open} onOpenChange={setOpen}>
+                <KeerthiTrigger asChild>
+                  <Button
+                    size="icon"
+                    variant="secondary"
+                    className="rounded-xl"
+                  >
+                    <Plus className="h-4 w-4" />
+                  </Button>
+                </KeerthiTrigger>
+
+                <KeerthiContent className="mx-auto">
+                  <KeerthiHeader>
+                    <KeerthiTitle>Send a Bottle 🌊</KeerthiTitle>
+                    <KeerthiDescription>
+                      Write a message and let it drift across the digital sea.
+                    </KeerthiDescription>
+                  </KeerthiHeader>
+
+                  <KeerthiBody>
+                    <Textarea
+                      placeholder="Write your message here..."
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      className="min-h-[120px] mb-4"
+                    />
+                    <div>
+                      <label className="text-sm font-medium mb-2 block">
+                        Drift Time (hours)
+                      </label>
+                      <Input
+                        type="number"
+                        min={24}
+                        max={168}
+                        value={driftTime}
+                        onChange={(e) => setDriftTime(Number(e.target.value))}
+                      />
+                    </div>
+                    <label className="text-sm mt-4 block">
+                      NOTE: Takes 24hrs to deliver because vercel limit is
+                      running one cron job every 24hrs
+                    </label>
+                  </KeerthiBody>
+
+                  <KeerthiFooter className="flex justify-end gap-2">
+                    <KeerthiClose asChild>
+                      <Button variant="outline">Cancel</Button>
+                    </KeerthiClose>
+                    <Button onClick={handlePostBottle}>Send Bottle</Button>
+                  </KeerthiFooter>
+                </KeerthiContent>
+              </Keerthi>
+
               <UserButton
                 size="sm"
                 additionalLinks={[
@@ -185,6 +239,7 @@ export default function PageLayout({
                     href: `/profile/${e.data?.user.username}`,
                     icon: <UserIcon />,
                     label: "Profile",
+                    signedIn: true,
                   },
                 ]}
               />

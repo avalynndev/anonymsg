@@ -94,7 +94,7 @@ export default function Bottles() {
               onClick={() => router.push(`/bottle/${bottle.id}`)}
               className={`cursor-pointer transition-transform hover:-translate-y-0.5 ${
                 isDark
-                  ? "rounded-lg border border-border bg-card p-4 shadow-sm"
+                  ? "rounded-lg border border-border bg-card p-6 shadow-sm"
                   : "relative overflow-hidden rounded-2xl border border-blue-200/40 bg-gradient-to-br from-sky-50/70 via-sky-100/60 to-blue-200/50 shadow-[0_8px_25px_-5px_rgba(14,165,233,0.3)] backdrop-blur-md p-6 md:p-8 hover:shadow-[0_10px_30px_-5px_rgba(14,165,233,0.4)]"
               }`}
             >

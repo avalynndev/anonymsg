@@ -2,184 +2,28 @@
 
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+import { db } from "@/db";
+import { bottle } from "@/schema";
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+  Keerthi,
+  KeerthiContent,
+  KeerthiDescription,
+  KeerthiFooter,
+  KeerthiHeader,
+  KeerthiTitle,
+} from "./ui/keerthi";
+import { Bottle } from "./bottle";
+import { InferSelectModel } from "drizzle-orm";
 
-export function Bottle({
-  topPercent,
-  duration,
-  delay,
-  scale = 1,
-  onBottleClick,
-}: {
+type BottleType = InferSelectModel<typeof bottle>;
+type BottleWithMotion = BottleType & {
   topPercent: number;
   duration: number;
   delay: number;
-  scale?: number;
-  onBottleClick: () => void;
-}) {
-  const style: React.CSSProperties = {
-    position: "absolute",
-    top: `${topPercent}%`,
-    transform: `scale(${scale})`,
-    animation: `drift-left ${duration}s linear ${delay}s infinite`,
-    zIndex: 100,
-    willChange: "transform",
-    cursor: "pointer",
-    transition: "filter 0.2s ease",
-  };
-  return (
-    <button
-      style={style}
-      className="select-none focus:outline-none rounded-lg"
-      onClick={onBottleClick}
-      aria-label="Click to open message in a bottle"
-    >
-      <svg
-        width={120}
-        height={72}
-        viewBox="0 0 120 72"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        style={{ filter: "drop-shadow(0 6px 20px rgba(59, 130, 246, 0.4))" }}
-      >
-        <path d="M8 28c-3 0-6 3-6 8s3 8 6 8h32V28H8z" fill="#CD853F" />
-        <path d="M8 28c-2.5 0-5 3-5 8s2.5 8 5 8h15V28H8z" fill="#CD853F" />
-        <defs>
-          <linearGradient
-            id={`neckGrad${delay.toFixed(3)}`}
-            x1="0"
-            y1="0"
-            x2="0"
-            y2="1"
-          >
-            <stop offset="0%" stopColor="#E0F2FE" stopOpacity="0.95" />
-            <stop offset="50%" stopColor="#BAE6FD" stopOpacity="0.88" />
-            <stop offset="100%" stopColor="#7DD3FC" stopOpacity="0.92" />
-          </linearGradient>
-          <linearGradient
-            id={`bottleGrad${delay.toFixed(3)}`}
-            x1="0"
-            y1="0"
-            x2="1"
-            y2="1"
-          >
-            <stop offset="0%" stopColor="#E0F2FE" stopOpacity="0.92" />
-            <stop offset="25%" stopColor="#BAE6FD" stopOpacity="0.85" />
-            <stop offset="50%" stopColor="#7DD3FC" stopOpacity="0.80" />
-            <stop offset="75%" stopColor="#38BDF8" stopOpacity="0.75" />
-            <stop offset="100%" stopColor="#0EA5E9" stopOpacity="0.70" />
-          </linearGradient>
-          <radialGradient
-            id={`glassShine${delay.toFixed(3)}`}
-            cx="0.3"
-            cy="0.3"
-          >
-            <stop offset="0%" stopColor="white" stopOpacity="0.9" />
-            <stop offset="50%" stopColor="white" stopOpacity="0.4" />
-            <stop offset="100%" stopColor="white" stopOpacity="0" />
-          </radialGradient>
-          <filter id={`innerShadow${delay.toFixed(3)}`}>
-            <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
-            <feOffset dx="2" dy="2" result="offsetblur" />
-            <feComponentTransfer>
-              <feFuncA type="linear" slope="0.6" />
-            </feComponentTransfer>
-            <feMerge>
-              <feMergeNode />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-          <filter id={`glassBlur${delay.toFixed(3)}`}>
-            <feGaussianBlur in="SourceGraphic" stdDeviation="0.5" />
-          </filter>
-        </defs>
-        <path
-          d="M36 28v16h8V28z"
-          fill={`url(#neckGrad${delay.toFixed(3)})`}
-          stroke="#93C5FD"
-          strokeWidth="1"
-        />
-        <rect
-          x="44"
-          y="18"
-          width="70"
-          height="36"
-          rx="12"
-          fill={`url(#bottleGrad${delay.toFixed(3)})`}
-          stroke="#60A5FA"
-          strokeWidth="2"
-        />
-        <ellipse cx="54" cy="24" rx="8" ry="4" fill="white" opacity="0.7" />
-        <ellipse cx="60" cy="28" rx="14" ry="7" fill="white" opacity="0.5" />
-        <g>
-          <rect
-            x="78"
-            y="24"
-            width="24"
-            height="24"
-            rx="2"
-            fill="#FEF3C7"
-            opacity="0.95"
-          />
-          <rect
-            x="79"
-            y="25"
-            width="22"
-            height="22"
-            rx="2"
-            fill="#FEF9E7"
-            opacity="0.9"
-          />
-          <line
-            x1="83"
-            y1="30"
-            x2="97"
-            y2="30"
-            stroke="#92400E"
-            strokeWidth="1.2"
-            opacity="0.6"
-          />
-          <line
-            x1="83"
-            y1="35"
-            x2="97"
-            y2="35"
-            stroke="#92400E"
-            strokeWidth="1.2"
-            opacity="0.6"
-          />
-          <line
-            x1="83"
-            y1="40"
-            x2="94"
-            y2="40"
-            stroke="#92400E"
-            strokeWidth="1.2"
-            opacity="0.6"
-          />
-        </g>
-      </svg>
-    </button>
-  );
-}
-
+  scale: number;
+};
 export default function Ocean() {
-  const [bottles, setBottles] = useState<
-    Array<{
-      id: number;
-      topPercent: number;
-      duration: number;
-      delay: number;
-      scale: number;
-    }>
-  >([]);
-
   const [bubbles, setBubbles] = useState<
     Array<{
       id: number;
@@ -188,40 +32,45 @@ export default function Ocean() {
       duration: number;
     }>
   >([]);
-
+  const [isLoading, setIsLoading] = useState(true);
+  const [bottles, setBottles] = useState<BottleWithMotion[]>([]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [selectedMessage, setSelectedMessage] = useState("");
+  const [allBottles, setAllBottles] = useState<BottleWithMotion[]>([]);
+  const [selectedBottle, setSelectedBottle] = useState<BottleWithMotion | null>(
+    null,
+  );
+  const router = useRouter();
 
-  const messages = [
-    "Hello from across the digital sea! 🌊",
-    "May this message find you well, traveler.",
-    "The ocean connects us all, even through screens.",
-    "A beacon of hope floats eternally...",
-    "Someone, somewhere, is thinking of you.",
-    "The waves carry stories untold.",
-    "In the vast ocean, you found me.",
-    "Let kindness flow like water.",
-    "Every bottle has a story to tell.",
-    "May your journey be filled with wonder.",
-  ];
+  useEffect(() => {
+    const fetchBottles = async () => {
+      try {
+        setIsLoading(true);
+        const res = await db.select().from(bottle);
+        const allWithMotion = res.map((b) => ({
+          ...b,
+          topPercent: 65 + Math.random() * 10,
+          duration: 20 + Math.random() * 20,
+          delay: Math.random() * -10,
+          scale: 0.7 + Math.random() * 0.5,
+        }));
 
-  const handleBottleClick = () => {
-    const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-    setSelectedMessage(randomMessage);
+        setBottles(allWithMotion.slice(0, 10));
+        setAllBottles(allWithMotion);
+      } catch (error) {
+        console.error("Failed to fetch bottles:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchBottles();
+  }, []);
+
+  const handleBottleClick = (bottleData: any) => {
+    setSelectedBottle(bottleData);
     setIsDialogOpen(true);
   };
 
   useEffect(() => {
-    const newBottles = Array.from({ length: 10 }).map((_, i) => {
-      const row = Math.floor(Math.random() * 3);
-      const topPercent = 68 + row * 5 + Math.random() * 4;
-      const duration = 20 + Math.random() * 25;
-      const delay = Math.random() * -duration;
-      const scale = 0.65 + Math.random() * 0.7;
-      return { id: i, topPercent, duration, delay, scale };
-    });
-    setBottles(newBottles);
-
     const newBubbles = Array.from({ length: 20 }).map((_, i) => ({
       id: i,
       left: Math.random() * 100,
@@ -231,15 +80,35 @@ export default function Ocean() {
     setBubbles(newBubbles);
   }, []);
 
+  useEffect(() => {
+    if (!bottles.length || !allBottles.length) return;
+
+    const timers = bottles.map((bottleItem) => {
+      return setTimeout(() => {
+        setBottles((prev) => {
+          const filtered = prev.filter((x) => x.id !== bottleItem.id);
+
+          const remaining = allBottles.filter(
+            (x) => !filtered.some((y) => y.id === x.id),
+          );
+          const randomNew =
+            remaining.length > 0
+              ? remaining[Math.floor(Math.random() * remaining.length)]
+              : null;
+
+          return randomNew ? [...filtered, randomNew] : filtered;
+        });
+      }, bottleItem.duration * 1000);
+    });
+
+    return () => timers.forEach(clearTimeout);
+  }, [bottles, allBottles]);
+
   return (
     <div className="relative h-full w-full overflow-hidden bg-gradient-to-b dark:from-[#0a192f] dark:via-[#0e2433] dark:to-[#001f3f]">
       <div className="absolute inset-0 -z-20 bg-gradient-to-b from-sky-50 via-blue-50 to-cyan-50" />
-      <div
-        className="absolute top-6 right-12 w-28 h-28 rounded-full bg-gradient-to-br from-yellow-200 to-orange-300 opacity-50 blur-xl dark:from-blue-400 dark:to-indigo-500 dark:opacity-30 dark:blur-2xl"
-      />
-      <div
-        className="absolute top-8 right-14 w-24 h-24 rounded-full bg-yellow-100 opacity-70 dark:bg-indigo-300/30 dark:opacity-40"
-      />
+      <div className="absolute top-6 right-12 w-28 h-28 rounded-full bg-gradient-to-br from-yellow-200 to-orange-300 opacity-50 blur-xl dark:from-blue-400 dark:to-indigo-500 dark:opacity-30 dark:blur-2xl" />
+      <div className="absolute top-8 right-14 w-24 h-24 rounded-full bg-yellow-100 opacity-70 dark:bg-indigo-300/30 dark:opacity-40" />
       <div className="absolute inset-x-0 bottom-0 -z-10 h-4/5 opacity-40 overflow-hidden">
         <svg
           viewBox="0 0 3200 400"
@@ -276,16 +145,33 @@ export default function Ocean() {
           />
         </svg>
       </div>
-      {bottles.map((b) => (
-        <Bottle
-          key={b.id}
-          topPercent={b.topPercent}
-          duration={b.duration}
-          delay={b.delay}
-          scale={b.scale}
-          onBottleClick={handleBottleClick}
-        />
-      ))}
+      {isLoading && (
+        <div className="absolute inset-0 z-40 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+          <div className="flex flex-col items-center">
+            <div className="h-10 w-10 animate-spin rounded-full border-4 border-t-transparent border-white/70 mb-3" />
+            <p className="text-white/90 text-sm font-medium tracking-wide">
+              Setting bottles adrift...
+            </p>
+          </div>
+        </div>
+      )}
+      <div
+        className={`${
+          isDialogOpen ? "opacity-0 pointer-events-none" : "opacity-100"
+        }`}
+      >
+        {bottles.map((b) => (
+          <Bottle
+            key={b.id}
+            topPercent={b.topPercent}
+            duration={b.duration}
+            delay={b.delay}
+            scale={b.scale}
+            onBottleClick={() => handleBottleClick(b)}
+          />
+        ))}
+      </div>
+
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-full">
         <svg
           viewBox="0 0 3200 400"
@@ -361,23 +247,28 @@ export default function Ocean() {
           />
         ))}
       </div>
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="sm:max-w-md transition-colors bg-gradient-to-b from-sky-100 via-sky-200 to-cyan-200 dark:bg-background dark:bg-none">
-          <DialogHeader>
-            <DialogTitle className="text-2xl font-bold">
+      <Keerthi open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <KeerthiContent className="sm:max-w-md transition-colors bg-gradient-to-b from-sky-100 via-sky-200 to-cyan-200 dark:bg-background dark:bg-none">
+          <KeerthiHeader>
+            <KeerthiTitle className="text-2xl">
               Message in a Bottle 🍾
-            </DialogTitle>
-            <DialogDescription className="text-base pt-4">
-              {selectedMessage}
-            </DialogDescription>
-          </DialogHeader>
-          <div className="flex justify-end mt-4">
-            <Button onClick={() => setIsDialogOpen(false)}>Close</Button>
-          </div>
-        </DialogContent>
-      </Dialog>
-      <div className="wave-1 animate-wave-mid" />
-      <div className="bubble" />
+            </KeerthiTitle>
+            <KeerthiDescription className="text-base pt-4">
+              {selectedBottle?.message || "No message available."}
+            </KeerthiDescription>
+          </KeerthiHeader>
+          <KeerthiFooter className="flex justify-between mt-4">
+            <Button variant="secondary" onClick={() => setIsDialogOpen(false)}>
+              Close
+            </Button>
+            <Button
+              onClick={() => router.push(`/bottle/${selectedBottle?.id}`)}
+            >
+              View more
+            </Button>
+          </KeerthiFooter>
+        </KeerthiContent>
+      </Keerthi>
     </div>
   );
 }

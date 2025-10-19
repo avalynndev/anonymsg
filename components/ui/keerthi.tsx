@@ -39,7 +39,7 @@ interface KeerthiProps extends BaseProps {
   asChild?: true;
 }
 
-const desktop = "(min-width: 768px)";
+const desktop = "(min-width: 640px)";
 
 const Keerthi = ({ children, ...props }: RootKeerthiProps) => {
   const isDesktop = useMediaQuery(desktop);
