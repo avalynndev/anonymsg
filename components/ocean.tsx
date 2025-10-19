@@ -34,7 +34,6 @@ export function Ocean() {
       duration: number;
     }>
   >([]);
-  const [hasSeenIntro, setHasSeenIntro] = useState(true);
   const [isIntroOpen, setIsIntroOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [bottles, setBottles] = useState<BottleWithMotion[]>([]);
@@ -48,14 +47,12 @@ export function Ocean() {
   useEffect(() => {
     const seen = localStorage.getItem("hasSeenBeaconIntro");
     if (!seen) {
-      setHasSeenIntro(false);
       setIsIntroOpen(true);
     }
   }, []);
 
   const handleIntroClose = () => {
     localStorage.setItem("hasSeenBeaconIntro", "true");
-    setHasSeenIntro(true);
     setIsIntroOpen(false);
   };
 

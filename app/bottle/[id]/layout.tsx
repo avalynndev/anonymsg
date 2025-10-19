@@ -6,11 +6,15 @@ import { eq } from "drizzle-orm";
 
 interface BottleLayoutProps {
   children: React.ReactNode;
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
-export async function generateMetadata({ params }: { params: { id: string } }) {
-  const { id } = params;
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
 
   const [bottleData] = await db
     .select()
@@ -41,6 +45,9 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
   };
 }
 
-export default function BottleDetailLayout({ children, params }: BottleLayoutProps) {
+export default async function BottleDetailLayout({
+  children,
+  params,
+}: BottleLayoutProps) {
   return <PageLayout>{children}</PageLayout>;
 }
