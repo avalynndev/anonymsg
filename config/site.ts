@@ -2,15 +2,13 @@ export const siteConfig = {
   name: "Beacon in a Bottle",
   url: "https://beacon-in-a-bottle.vercel.app",
   description:
-    "Send messages adrift across the digital sea. Beacon in a Bottle connects hearts and stories from every corner of the world.",
+    "Send messages into the digital ocean and discover notes from strangers around the world.",
   keywords: [
-    "Beacon in a Bottle",
     "message in a bottle",
-    "anonymous messaging",
-    "digital connection",
+    "anonymous messages",
+    "random connection",
     "drift bottles",
-    "global stories",
-    "send messages",
+    "stranger stories",
   ],
   author: "avalynndev",
   links: {
@@ -20,65 +18,50 @@ export const siteConfig = {
 
   metadata: {
     default: {
-      title: "Beacon in a Bottle – Messages Across the Digital Sea",
+      title: "Beacon in a Bottle",
       description:
-        "A place where messages drift, stories travel, and strangers connect. Send or discover bottles floating through the digital ocean.",
+        "Toss a message into the digital sea. Maybe someone out there will find it.",
     },
 
     inbox: {
       title: "Inbox",
       description:
-        "Catch the bottles that found their way to you. Read heartfelt messages from others across the world and connect through shared words.",
-      keywords: [
-        "Beacon inbox",
-        "drifting messages",
-        "receive bottles",
-        "digital connection",
-      ],
+        "Messages that washed up on your shore. See what strangers wanted to share with you.",
+      keywords: ["inbox", "received messages", "found bottles"],
     },
 
     discover: {
       title: "Discover",
       description:
-        "Set sail and find bottles floating across the world. Discover emotions, stories, and thoughts from people you’ve never met before.",
-      keywords: [
-        "discover bottles",
-        "digital sea",
-        "discover messages",
-        "emotional stories",
-      ],
+        "Wade through the ocean and find bottles from around the world. Each one has a story.",
+      keywords: ["discover", "find messages", "random stories"],
     },
+
     about: {
       title: "About",
       description:
-        "Beacon in a Bottle is a digital reflection of the timeless act of sending a message into the unknown — built for dreamers, thinkers, and wanderers of the web.",
-      keywords: [
-        "about beacon",
-        "origin of beacon in a bottle",
-        "digital storytelling",
-      ],
+        "Beacon in a Bottle lets you send messages to random people, just like tossing a bottle into the sea.",
+      keywords: ["about", "how it works", "message bottle app"],
     },
 
     settings: {
       title: "Settings",
-      description:
-        "Manage your account, update your profile, and configure your personal settings for a seamless experience on Beacon in a Bottle.",
+      description: "Update your profile and manage your account.",
     },
 
     signIn: {
       title: "Sign In",
-      description:
-        "Sign in to Beacon in a Bottle to access your inbox, send messages, and explore bottles drifting across the digital sea.",
+      description: "Log in to send and receive bottles.",
     },
 
     signUp: {
       title: "Sign Up",
-      description: "Create your account on Beacon in a Bottle.",
+      description: "Join Beacon in a Bottle.",
     },
 
     signOut: {
       title: "Sign Out",
-      description: "You have signed out of Beacon in a Bottle.",
+      description: "You've signed out.",
     },
   },
 };
