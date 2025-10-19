@@ -43,17 +43,9 @@ export default async function ProfilePage({ params }: any) {
             Display name: {userInfo.displayUsername}
           </p>
         )}
-        {userInfo.image && (
-          <img
-            src={userInfo.image}
-            alt="User profile"
-            className="w-20 h-20 rounded-full mb-4"
-          />
-        )}
-
         <hr className="my-6" />
 
-        <h2 className="text-2xl font-semibold mt-4">Bottles</h2>
+        <h2 className="text-2xl font-semibold my-4">Bottles</h2>
         {userBottles.length === 0 ? (
           <p className="text-muted-foreground">No bottles yet.</p>
         ) : (

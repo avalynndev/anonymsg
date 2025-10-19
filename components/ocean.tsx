@@ -48,10 +48,7 @@ export function Bottle({
         xmlns="http://www.w3.org/2000/svg"
         style={{ filter: "drop-shadow(0 6px 20px rgba(59, 130, 246, 0.4))" }}
       >
-        <path
-          d="M8 28c-3 0-6 3-6 8s3 8 6 8h32V28H8z"
-          fill="#CD853F"
-        />
+        <path d="M8 28c-3 0-6 3-6 8s3 8 6 8h32V28H8z" fill="#CD853F" />
         <path d="M8 28c-2.5 0-5 3-5 8s2.5 8 5 8h15V28H8z" fill="#CD853F" />
         <defs>
           <linearGradient

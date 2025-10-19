@@ -38,7 +38,7 @@ export default function RootLayout({
         className={`${nunito.variable} ${ptSans.variable} antialiased relative`}
       >
         <Providers>
-          <Toaster/>
+          <Toaster />
           <div className="texture" />
           {children}
         </Providers>

@@ -6,6 +6,7 @@ import { formatDate } from "@/lib/utils";
 import { CornerBottomLeftIcon, ReloadIcon } from "@radix-ui/react-icons";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
+import { useTheme } from "next-themes";
 
 import { db } from "@/db";
 import { bottle, bottleReply } from "@/schema";
@@ -34,6 +35,8 @@ type Bottle = {
 
 export default function Bottles() {
   const router = useRouter();
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === "dark";
 
   const [bottles, setBottles] = useState<Bottle[]>([]);
   const [loading, setLoading] = useState(true);
@@ -65,7 +68,7 @@ export default function Bottles() {
   }, []);
 
   const visibleBottles = bottles.filter((bottle) =>
-    bottle.message.toLowerCase().includes(searchTerm.toLowerCase())
+    bottle.message.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   return (
@@ -89,28 +92,39 @@ export default function Bottles() {
             <div
               key={bottle.id}
               onClick={() => router.push(`/bottle/${bottle.id}`)}
-              className="
-      relative cursor-pointer overflow-hidden rounded-2xl border border-blue-200/40 
-      bg-gradient-to-br from-sky-50/70 via-sky-100/60 to-blue-200/50 
-      shadow-[0_8px_25px_-5px_rgba(14,165,233,0.3)] 
-      backdrop-blur-md transition-transform hover:-translate-y-1 
-      hover:shadow-[0_10px_30px_-5px_rgba(14,165,233,0.4)]
-      p-6 md:p-8
-    "
+              className={`cursor-pointer transition-transform hover:-translate-y-0.5 ${
+                isDark
+                  ? "rounded-lg border border-border bg-card p-4 shadow-sm"
+                  : "relative overflow-hidden rounded-2xl border border-blue-200/40 bg-gradient-to-br from-sky-50/70 via-sky-100/60 to-blue-200/50 shadow-[0_8px_25px_-5px_rgba(14,165,233,0.3)] backdrop-blur-md p-6 md:p-8 hover:shadow-[0_10px_30px_-5px_rgba(14,165,233,0.4)]"
+              }`}
             >
-              <div className="absolute inset-0 opacity-20 bg-gradient-to-tr from-white/40 to-transparent pointer-events-none" />
+              {!isDark && (
+                <div className="absolute inset-0 opacity-20 bg-gradient-to-tr from-white/40 to-transparent pointer-events-none" />
+              )}
 
               <div className="mb-3 flex items-center">
                 <div>
-                  <div className="font-semibold text-sm text-sky-900/80">
+                  <div
+                    className={`font-semibold text-sm ${
+                      isDark ? "text-foreground" : "text-sky-900/80"
+                    }`}
+                  >
                     {bottle.senderName || bottle.senderUsername || "Anonymous"}
                     {bottle.senderUsername && (
-                      <span className="ml-2 text-xs text-sky-700/60">
+                      <span
+                        className={`ml-2 text-xs ${
+                          isDark ? "text-muted-foreground" : "text-sky-700/60"
+                        }`}
+                      >
                         @{bottle.senderUsername}
                       </span>
                     )}
                   </div>
-                  <div className="mt-1 text-xs text-sky-800/40">
+                  <div
+                    className={`mt-1 text-xs ${
+                      isDark ? "text-muted-foreground" : "text-sky-800/40"
+                    }`}
+                  >
                     {formatDate(bottle.createdAt)}
                   </div>
                 </div>
@@ -119,7 +133,11 @@ export default function Bottles() {
                   {bottle.isDelivered && (
                     <Badge
                       variant="secondary"
-                      className="bg-blue-200/60 text-blue-800/80 border border-blue-300/40"
+                      className={
+                        isDark
+                          ? "bg-muted text-foreground"
+                          : "bg-blue-200/60 text-blue-800/80 border border-blue-300/40"
+                      }
                     >
                       Delivered
                     </Badge>
@@ -127,7 +145,11 @@ export default function Bottles() {
                 </div>
               </div>
 
-              <div className="text-sm leading-relaxed text-sky-950/80 whitespace-pre-wrap break-words">
+              <div
+                className={`text-sm leading-relaxed whitespace-pre-wrap break-words ${
+                  isDark ? "text-muted-foreground" : "text-sky-950/80"
+                }`}
+              >
                 {bottle.message}
               </div>
 
@@ -136,9 +158,9 @@ export default function Bottles() {
                   bottle.replies.map((r, index) => (
                     <div
                       key={r.id}
-                      className={`flex items-start text-sky-700/70 ${
-                        index === 0 ? "" : "pl-5"
-                      }`}
+                      className={`flex items-start ${
+                        isDark ? "text-muted-foreground" : "text-sky-700/70"
+                      } ${index === 0 ? "" : "pl-5"}`}
                     >
                       {index === 0 && (
                         <CornerBottomLeftIcon className="mr-1 mt-0.5 h-4 w-4 opacity-70" />
@@ -150,7 +172,13 @@ export default function Bottles() {
                     </div>
                   ))
                 ) : (
-                  <div className="italic text-sky-700/50">No replies yet.</div>
+                  <div
+                    className={`italic ${
+                      isDark ? "text-muted-foreground/70" : "text-sky-700/50"
+                    }`}
+                  >
+                    No replies yet.
+                  </div>
                 )}
               </div>
             </div>

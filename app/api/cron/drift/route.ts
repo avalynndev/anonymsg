@@ -21,7 +21,7 @@ export async function GET() {
 
     const users = await db.select().from(user);
     const eligible = users.filter(
-      (u) => u.username && u.username !== b.senderUsername
+      (u) => u.username && u.username !== b.senderUsername,
     );
 
     if (eligible.length === 0) continue;

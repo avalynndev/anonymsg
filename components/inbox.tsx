@@ -8,11 +8,16 @@ import { useSession } from "@/lib/auth-client";
 import { ReloadIcon } from "@radix-ui/react-icons";
 import { Badge } from "@/components/ui/badge";
 import { formatDate } from "@/lib/utils";
+import { useRouter } from "next/navigation";
+import { useTheme } from "next-themes";
 
 export default function Inbox() {
   const { data: session } = useSession();
   const [bottles, setBottles] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const { resolvedTheme } = useTheme();
+  const router = useRouter();
+  const isDark = resolvedTheme === "dark";
 
   useEffect(() => {
     if (!session?.user?.username) return;
@@ -54,20 +59,44 @@ export default function Inbox() {
       {bottles.map((bottle) => (
         <div
           key={bottle.id}
-          className="relative rounded-2xl border border-sky-200/40 bg-gradient-to-br from-sky-50/80 via-sky-100/70 to-blue-200/50 shadow-[0_8px_25px_-5px_rgba(14,165,233,0.3)] p-6"
+          onClick={() => router.push(`/bottle/${bottle.id}`)}
+          className={`cursor-pointer transition-transform hover:-translate-y-0.5 ${
+            isDark
+              ? "rounded-lg border border-border bg-card p-6 shadow-sm"
+              : "relative rounded-2xl border border-sky-200/40 bg-gradient-to-br from-sky-50/80 via-sky-100/70 to-blue-200/50 shadow-[0_8px_25px_-5px_rgba(14,165,233,0.3)] p-6"
+          }`}
         >
           <div className="mb-2 flex items-center justify-between">
-            <div className="text-sm font-medium text-sky-800">
+            <div
+              className={`text-sm font-medium ${
+                isDark ? "text-foreground" : "text-sky-800"
+              }`}
+            >
               From {bottle.senderUsername || "Anonymous"}
             </div>
-            <Badge variant="secondary" className="bg-blue-200/50">
+            <Badge
+              variant="secondary"
+              className={
+                isDark
+                  ? "bg-muted text-foreground"
+                  : "bg-blue-200/50 text-sky-900"
+              }
+            >
               Delivered
             </Badge>
           </div>
-          <div className="text-sky-950/80 text-sm whitespace-pre-wrap">
+          <div
+            className={`text-sm whitespace-pre-wrap ${
+              isDark ? "text-muted-foreground" : "text-sky-950/80"
+            }`}
+          >
             {bottle.message}
           </div>
-          <div className="mt-2 text-xs text-sky-600">
+          <div
+            className={`mt-2 text-xs ${
+              isDark ? "text-muted-foreground" : "text-sky-600"
+            }`}
+          >
             {formatDate(bottle.deliveredAt)}
           </div>
         </div>

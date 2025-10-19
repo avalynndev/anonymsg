@@ -9,7 +9,9 @@ export const metadata = {
 export default function Page() {
   return (
     <PageLayout>
-      <section className="relative h-[72vh] w-full overflow-hidden p-0 rounded-2xl border-[0.5]"><Bottles/></section>
+      <section className="relative h-[72vh] w-full overflow-hidden p-0 rounded-2xl border-[0.5]">
+        <Bottles />
+      </section>
     </PageLayout>
   );
 }

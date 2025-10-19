@@ -21,6 +21,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { db } from "@/db";
 import { bottle } from "@/schema";
+import { GlowingBackground } from "./glowbg";
 
 export default function PageLayout({
   children,
@@ -38,7 +39,7 @@ export default function PageLayout({
     try {
       await db.insert(bottle).values({
         message,
-        driftTime:0,
+        driftTime: 0,
         senderName: e.data?.user?.name ?? "Anonymous",
         senderUsername: e.data?.user?.username ?? null,
       });
@@ -55,7 +56,8 @@ export default function PageLayout({
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-sky-100 via-sky-200 to-cyan-200 dark:bg-background dark:bg-none">
-      <div className="mx-auto w-full max-w-screen-xl px-4 py-8 flex flex-col min-h-screen text-foreground dark:text-foreground">
+      <GlowingBackground />
+      <div className="mx-auto w-full max-w-screen-xl px-4 py-8 flex flex-col min-h-screen text-foreground dark:text-foreground z-20">
         <header className="mb-6 flex items-center justify-between rounded-2xl bg-white/30 backdrop-blur-md shadow-sm px-6 py-4 dark:bg-background">
           <div>
             <h1 className="text-3xl font-bold">Beacon in a Bottle</h1>
@@ -83,11 +85,7 @@ export default function PageLayout({
 
             <Keerthi open={open} onOpenChange={setOpen}>
               <KeerthiTrigger asChild>
-                <Button
-                  size="icon"
-                  variant="secondary"
-                  className="rounded-xl"
-                >
+                <Button size="icon" variant="secondary" className="rounded-xl">
                   <Plus className="h-4 w-4" />
                 </Button>
               </KeerthiTrigger>
@@ -194,7 +192,7 @@ export default function PageLayout({
 
         <footer className="mt-8 rounded-2xl bg-white/30 backdrop-blur-md shadow-sm px-6 py-4 flex flex-col md:flex-row items-center justify-between text-sm dark:bg-background">
           <p className="font-medium">Crafted with 🌊 • Beacon in a Bottle</p>
-           <p className="mt-2 md:mt-0 font-semibold text-slate-700 dark:text-slate-200">
+          <p className="mt-2 md:mt-0 font-semibold text-slate-700 dark:text-slate-200">
             Made with <span className="text-pink-600 ">❤️ </span> for{" "}
             <span className="text-sky-700 dark:text-sky-400">Keerthi</span>
           </p>
