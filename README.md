@@ -13,7 +13,7 @@
 
 The concept is inspired by the classic “message in a bottle,” reimagined digitally. Users can drop a bottle into the virtual ocean, and others can find it, read it, and react to it.
 
-Here is a [video]() showcasing the platform in action.
+Here is a [video](https://www.youtube.com/watch?v=TgEbwC3vPIA) showcasing the platform in action.
 
 # 🔥Features
 
