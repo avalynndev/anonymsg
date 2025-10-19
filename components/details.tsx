@@ -73,11 +73,11 @@ export default function BottleDetailPage({ id }: { id: ParamValue }) {
 
       <div
         className="
-          rounded-xl border border-sky-200/50 dark:border-border 
-          bg-white/60 dark:bg-card
-          backdrop-blur-md shadow-[0_4px_20px_-5px_rgba(14,165,233,0.25)] dark:shadow-sm
-          p-5 transition-all
-        "
+    rounded-xl border border-sky-200/50 dark:border-border 
+    bg-white/60 dark:bg-card
+    backdrop-blur-md shadow-[0_4px_20px_-5px_rgba(14,165,233,0.25)] dark:shadow-sm
+    p-5 transition-all
+  "
       >
         <div className="text-sm text-muted-foreground mb-2">
           {formatDate(bottleData.createdAt)} by{" "}
@@ -96,6 +96,51 @@ export default function BottleDetailPage({ id }: { id: ParamValue }) {
         <p className="whitespace-pre-wrap break-words text-sky-900 dark:text-foreground leading-relaxed">
           {bottleData.message}
         </p>
+        <div className="mt-4 text-sm text-muted-foreground space-y-1 border-t pt-3 border-sky-200/40 dark:border-border">
+          <div>
+            <span className="font-medium text-sky-900 dark:text-foreground">
+              Drift Time:
+            </span>{" "}
+            {bottleData.driftTime} hours
+          </div>
+          <div>
+            <span className="font-medium text-sky-900 dark:text-foreground">
+              Receiver:
+            </span>{" "}
+            {bottleData.receiverUsername ? (
+              <Link
+                href={`/profile/${bottleData.receiverUsername}`}
+                className="underline text-sky-700 dark:text-sky-400"
+              >
+                {bottleData.receiverUsername}
+              </Link>
+            ) : (
+              "Not yet delivered"
+            )}
+          </div>
+          <div>
+            <span className="font-medium text-sky-900 dark:text-foreground">
+              Delivery Status:
+            </span>{" "}
+            {bottleData.isDelivered ? (
+              <span className="text-green-600 dark:text-green-400">
+                Delivered
+              </span>
+            ) : (
+              <span className="text-orange-600 dark:text-orange-400">
+                Pending
+              </span>
+            )}
+          </div>
+          {bottleData.deliveredAt && (
+            <div>
+              <span className="font-medium text-sky-900 dark:text-foreground">
+                Delivered At:
+              </span>{" "}
+              {formatDate(bottleData.deliveredAt)}
+            </div>
+          )}
+        </div>
       </div>
 
       <div>
