@@ -9,9 +9,9 @@
 
 # ⚡What is Beacon In a Bottle?
 
-**Beacon In A Bottle** is a creative message-sharing platform that lets users send “signals” in the form of bottles. Each bottle can carry a unique message, idea, or inspiration to be discovered by others, fostering creativity, surprise, and connection.
+Beacon In A Bottle is a website that lets users send “signals” in the form of bottles. These bottles float the ocean and end up in some random person's hands. Each bottle can carry a message, idea or absolutely anything. Bottles get sent once every 24hrs so adjust ur timing to match a multiple of 24 (vercel restrictions).
 
-The concept is inspired by the classic “message in a bottle,” reimagined digitally. Users can drop a bottle into the virtual ocean, and others can find it, read it, and react to it.
+This concept is based off "Message in a bottle" but online, increasing the number of people participating and the fun.
 
 Here is a [video](https://www.youtube.com/watch?v=TgEbwC3vPIA) showcasing the platform in action.
 
